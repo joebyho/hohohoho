@@ -1,2 +1,0 @@
-# ChouboKissaten
-Choubo Kissaten musiclive
