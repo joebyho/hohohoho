@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choubo Kissaten 音樂時光</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #FFF8E7; /* 淡米色背景，更純樸 */
+      font-family: "Noto Sans TC", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .player-container {
+      max-width: 500px;
+      width: 90%;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #6B4226;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    #start-button {
+      background-color: #A67C52;
+      border: none;
+      color: white;
+      padding: 12px 24px;
+      font-size: 18px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #start-button:hover {
+      background-color: #8B5E3C;
+    }
+
+    .brand-message {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #7A5521;
+    }
+  </style>
+</head>
+<body>
+  <div class="player-container">
+    <h1>Choubo Kissaten 音樂時光</h1>
+    <button id="start-button">▶️ 播放音樂</button>
+    <div class="brand-message">
+      靜靜聽，讓音樂陪伴 Choubo Kissaten 的每一刻。
+    </div>
+  </div>
+
+  <audio id="audio-player" style="display:none;"></audio>
+
+  <script>
+    const playlist = [
+      "TSsong1.mp3",
+      "TSsong2.mp3"
+    ];
+
+    const audioPlayer = document.getElementById('audio-player');
+    let currentTrack = 0;
+
+    function playTrack(index) {
+      audioPlayer.src = playlist[index];
+      audioPlayer.play();
+    }
+
+    document.getElementById('start-button').addEventListener('click', () => {
+      playTrack(currentTrack);
+      document.getElementById('start-button').style.display = 'none';
+    });
+
+    audioPlayer.addEventListener('ended', () => {
+      currentTrack = (currentTrack + 1) % playlist.length;
+      playTrack(currentTrack);
+    });
+  </script>
+</body>
+</html>
